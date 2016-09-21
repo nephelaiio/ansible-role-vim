@@ -1,0 +1,34 @@
+---
+driver:
+  name: docker
+
+docker:
+  containers:
+      - name: ansible-vim-jessie
+        image: debian
+        image_version: jessie
+        ansible_groups:
+          - vim-debian
+      - name: ansible-vim-xenial
+        image: ubuntu
+        image_version: xenial
+        ansible_groups:
+          - vim-ubuntu
+      - name: ansible-vim-centos7
+        image: centos
+        image_version: 7
+        ansible_groups:
+          - vim-centos
+      - name: ansible-vim-arch
+        image: pritunl/archlinux
+        image_version: latest
+        dockerfile: docker/arch.dockerfile
+        ansible_groups:
+          - vim-arch
+        command: /bin/bash
+
+ansible:
+  requirements_file: dependencies.yml
+
+verifier:
+  name: testinfra

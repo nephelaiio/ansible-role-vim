@@ -1,0 +1,46 @@
+---
+# Include variable definitions
+- name: "include variable overrides"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "vars/{{ ansible_distrubition }}.yml"
+    - "vars/{{ ansible_os_family }}.yml"
+  tags:
+    - vim
+
+# Install packages
+- name: install vim packages
+  package: name="{{ vim_packages }}" state="{{ vim_packages_state }}"
+  become: yes
+  tags:
+    - vim
+
+# Set up configuration file
+- name: create vim plugin directory
+  file: >
+    path="~/{{ vim_plugins_path }}"
+    state=directory
+    recurse=yes
+  become: no
+  tags:
+    - vim
+    - vimrc
+
+- name: configure vim
+  template: >
+    src="{{ vim_conf_template }}"
+    dest="~/{{ vim_conf_path }}"
+  become: no
+  tags:
+    - vim
+    - vim_conf
+
+- name: install vim neobundle
+  git: >
+    repo={{ vim_pluginmanager_repo }}
+    dest="~/{{ vim_plugins_path }}/neobundle.vim"
+  become: no
+  tags:
+    - vim
+    - vimrc

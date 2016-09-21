@@ -1,0 +1,23 @@
+---
+# see http://molecule.readthedocs.io/en/stable-1.9/usage.html
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - vagrant
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - molecule test
+
+# see http://docs.ansible.com/ansible/galaxy.html#setup-travis-integrations
+#notifications:
+#  webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -1,0 +1,25 @@
+galaxy_info:
+  author: Ted Cook
+  description: An Ansible role to install and configure vim
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Archlinux
+    versions:
+      - 2016-09-03
+  - name: Ubuntu
+    versions:
+    - xenial
+  - name: Debian
+    versions:
+    - jessie
+  galaxy_tags:
+    - vim
+
+dependencies: 
+  - { role: geerlingguy.repo-epel, when: "ansible_os_family == 'RedHat'" }
+  - { role: geerlingguy.git }

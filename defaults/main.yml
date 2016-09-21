@@ -1,0 +1,10 @@
+---
+# User variables for role
+vim_packages: 
+  - vim
+  - the_silver_searcher
+vim_packages_state: present
+vim_conf_template: vimrc
+vim_conf_path: .vim/vimrc
+vim_plugins_path: .vim/bundle
+vim_pluginmanager_repo: https://github.com/Shougo/neobundle.vim

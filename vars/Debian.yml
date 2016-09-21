@@ -1,0 +1,6 @@
+---
+# Variable definitions and overrides for Debian
+
+vim_packages: 
+  - vim
+  - silversearcher-ag
