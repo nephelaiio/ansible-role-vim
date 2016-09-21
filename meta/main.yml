@@ -20,6 +20,6 @@ galaxy_info:
   galaxy_tags:
     - vim
 
-dependencies: 
+dependencies:
   - { role: geerlingguy.repo-epel, when: "ansible_os_family == 'RedHat'" }
-  - { role: geerlingguy.git }
+  - { role: nephelaiio.git }

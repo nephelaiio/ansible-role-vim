@@ -40,6 +40,7 @@
   git: >
     repo={{ vim_pluginmanager_repo }}
     dest="~/{{ vim_plugins_path }}/neobundle.vim"
+    version={{ vim_neobundle_version }}
   become: no
   tags:
     - vim
