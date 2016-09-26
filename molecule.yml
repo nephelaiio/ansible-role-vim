@@ -8,24 +8,24 @@ docker:
         image: debian
         image_version: jessie
         ansible_groups:
-          - vim-debian
+          - test
       - name: ansible-vim-xenial
         image: ubuntu
         image_version: xenial
         ansible_groups:
-          - vim-ubuntu
+          - test
       - name: ansible-vim-centos7
         image: centos
         image_version: 7
         ansible_groups:
-          - vim-centos
+          - test
       - name: ansible-vim-arch
         image: pritunl/archlinux
         image_version: latest
         dockerfile: docker/arch.dockerfile
-        ansible_groups:
-          - vim-arch
         command: /bin/bash
+        ansible_groups:
+          - test
 
 ansible:
   requirements_file: dependencies.yml

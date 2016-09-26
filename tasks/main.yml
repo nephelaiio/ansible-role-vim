@@ -11,7 +11,9 @@
 
 # Install packages
 - name: install vim packages
-  package: name="{{ vim_packages }}" state="{{ vim_packages_state }}"
+  package: \
+    name="{{ vim_packages }}"
+    state="{{ vim_packages_state }}"
   become: yes
   tags:
     - vim
