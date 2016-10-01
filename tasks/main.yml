@@ -21,10 +21,11 @@
 # Set up configuration file
 - name: create vim plugin directory
   file: >
-    path="~/{{ vim_plugins_path }}"
+    path="~{{ item }}/{{ vim_plugins_path }}"
     state=directory
     recurse=yes
   become: no
+  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vimrc
@@ -32,8 +33,9 @@
 - name: configure vim
   template: >
     src="{{ vim_conf_template }}"
-    dest="~/{{ vim_conf_path }}"
+    dest="~{{ item }}/{{ vim_conf_path }}"
   become: no
+  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vim_conf
@@ -41,9 +43,10 @@
 - name: install vim neobundle
   git: >
     repo={{ vim_pluginmanager_repo }}
-    dest="~/{{ vim_plugins_path }}/neobundle.vim"
+    dest="~{{ item }}/{{ vim_plugins_path }}/neobundle.vim"
     version={{ vim_neobundle_version }}
   become: no
+  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vimrc

@@ -3,6 +3,8 @@
 vim_packages:
   - vim
   - the_silver_searcher
+vim_users:
+  - "{{ ansible_user }}"
 vim_packages_state: present
 vim_conf_template: vimrc
 vim_conf_path: .vim/vimrc
