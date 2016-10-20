@@ -27,12 +27,18 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'klen/python-mode.git'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
 NeoBundleCheck
 
 filetype plugin indent on
+
+" solarized customization
+syntax enable
+set background=dark
+colorscheme solarized
 
 " general customizations
 let mapleader=","
