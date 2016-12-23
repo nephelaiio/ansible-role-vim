@@ -1,34 +1,37 @@
 ---
 driver:
-  name: docker
+    name: docker
 
 docker:
-  containers:
-      - name: ansible-vim-jessie
-        image: debian
-        image_version: jessie
-        ansible_groups:
-          - test
-      - name: ansible-vim-xenial
-        image: ubuntu
-        image_version: xenial
-        ansible_groups:
-          - test
-      - name: ansible-vim-centos7
-        image: centos
-        image_version: 7
-        ansible_groups:
-          - test
-      - name: ansible-vim-arch
-        image: pritunl/archlinux
-        image_version: latest
-        dockerfile: docker/arch.dockerfile
-        command: /bin/bash
-        ansible_groups:
-          - test
+    containers:
+        - name: ansible-vim-jessie
+          image: debian
+          image_version: jessie
+          ansible_groups:
+              - test
+        - name: ansible-vim-xenial
+          image: ubuntu
+          image_version: xenial
+          ansible_groups:
+                  - test
+        - name: ansible-vim-centos7
+          image: centos
+          image_version: 7
+          ansible_groups:
+              - test
+        - name: ansible-vim-arch
+          image: pritunl/archlinux
+          image_version: latest
+          dockerfile: docker/arch.dockerfile
+          command: /bin/bash
+          ansible_groups:
+              - test
 
-ansible:
-  requirements_file: dependencies.yml
+dependency:
+    name: galaxy
+    requirements_file: dependencies.yml
+    options:
+        force: True
 
 verifier:
-  name: testinfra
+    name: testinfra
