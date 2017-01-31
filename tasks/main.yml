@@ -44,9 +44,9 @@
 
 - name: install vim neobundle
   git:
-    repo: {{ vim_pluginmanager_repo }}
+    repo: "{{ vim_pluginmanager_repo }}"
     dest: "~/{{ vim_plugins_path }}/neobundle.vim"
-    version: {{ vim_neobundle_version }}
+    version: "{{ vim_neobundle_version }}"
   become: yes
   become_user: "{{ item }}"
   with_items: "{{ vim_users }}"
