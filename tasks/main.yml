@@ -11,19 +11,19 @@
 
 # Install packages
 - name: install vim packages
-  package: \
-    name="{{ vim_packages }}"
-    state="{{ vim_packages_state }}"
+  package:
+    name: "{{ vim_packages }}"
+    state: "{{ vim_packages_state }}"
   become: yes
   tags:
     - vim
 
 # Set up configuration file
 - name: create vim plugin directory
-  file: >
-    path="~/{{ vim_plugins_path }}"
-    state=directory
-    recurse=yes
+  file:
+    path: "~/{{ vim_plugins_path }}"
+    state: directory
+    recurse: yes
   become: yes
   become_user: "{{ item }}"
   with_items: "{{ vim_users }}"
@@ -32,9 +32,9 @@
     - vimrc
 
 - name: configure vim
-  template: >
-    src="{{ vim_conf_template }}"
-    dest="~/{{ vim_conf_path }}"
+  template:
+    src: "{{ vim_conf_template }}"
+    dest: "~/{{ vim_conf_path }}"
   become: yes
   become_user: "{{ item }}"
   with_items: "{{ vim_users }}"
@@ -43,10 +43,10 @@
     - vim_conf
 
 - name: install vim neobundle
-  git: >
-    repo={{ vim_pluginmanager_repo }}
-    dest="~/{{ vim_plugins_path }}/neobundle.vim"
-    version={{ vim_neobundle_version }}
+  git:
+    repo: "{{ vim_pluginmanager_repo }}"
+    dest: "~/{{ vim_plugins_path }}/neobundle.vim"
+    version: "{{ vim_neobundle_version }}"
   become: yes
   become_user: "{{ item }}"
   with_items: "{{ vim_users }}"

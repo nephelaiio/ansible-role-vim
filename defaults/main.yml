@@ -1,5 +1,4 @@
 ---
-# User variables for role
 vim_packages:
   - vim
   - the_silver_searcher
