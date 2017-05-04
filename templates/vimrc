@@ -81,6 +81,7 @@ nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Gpush<CR>
+nmap <leader>gr :Gpull<CR>
 function! CommittedFiles()
   " Clear quickfix list
   let qf_list = []
