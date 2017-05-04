@@ -28,6 +28,7 @@ NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'klen/python-mode.git'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-syntastic/syntastic'
 
 call neobundle#end()
 
