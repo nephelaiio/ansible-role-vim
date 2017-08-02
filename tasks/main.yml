@@ -25,8 +25,6 @@
     state: directory
     recurse: yes
   become: yes
-  become_user: "{{ item }}"
-  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vimrc
@@ -36,8 +34,6 @@
     src: "{{ vim_conf_template }}"
     dest: "~/{{ vim_conf_path }}"
   become: yes
-  become_user: "{{ item }}"
-  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vim_conf
@@ -48,8 +44,6 @@
     dest: "~/{{ vim_plugins_path }}/neobundle.vim"
     version: "{{ vim_neobundle_version }}"
   become: yes
-  become_user: "{{ item }}"
-  with_items: "{{ vim_users }}"
   tags:
     - vim
     - vimrc
