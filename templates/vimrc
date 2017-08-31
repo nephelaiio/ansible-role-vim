@@ -3,7 +3,7 @@ if !1 | finish | endif
 
 if has('vim_starting')
   set nocompatible
-  set runtimepath+=~/{{ vim_plugins_path }}/neobundle.vim/
+  set runtimepath+={{ vim_plugins_path }}/neobundle.vim/
 endif
 
 filetype off

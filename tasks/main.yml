@@ -8,12 +8,16 @@
   tags:
     - vim
 
-- name: install packages
+- name: install dnf
   package:
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
   become: yes
-  with_items: "{{ vim_packages }}"
+  with_items:
+    - epel-release
+    - dnf
+    - dnf-plugins-core
+  when: ansible_os_family == 'RedHat'
   tags:
     - vim
 
@@ -26,13 +30,12 @@
     repo: "{{ vim_dnf_repo }}"
   when: ansible_os_family == 'RedHat'
 
-- name: install dnf packages
-  dnf:
+- name: install packages
+  package:
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
   become: yes
-  with_items: "{{ vim_dnf_packages }}"
-  when: ansible_os_family == 'RedHat'
+  with_items: "{{ vim_packages }}"
   tags:
     - vim
 
