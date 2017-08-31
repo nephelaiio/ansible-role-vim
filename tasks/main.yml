@@ -29,7 +29,7 @@
 - name: install dnf packages
   dnf:
     name: "{{ item }}"
-    state: "{{ i3_packages_state }}"
+    state: "{{ vim_packages_state }}"
   become: yes
   with_items: "{{ vim_dnf_packages }}"
   when: ansible_os_family == 'RedHat'
