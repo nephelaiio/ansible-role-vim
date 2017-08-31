@@ -1,6 +1,5 @@
 ---
-# Include variable definitions
-- name: "include variable overrides"
+- name: include variable overrides
   include_vars: "{{ item }}"
   with_first_found:
     - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
@@ -9,41 +8,56 @@
   tags:
     - vim
 
-# Install packages
-- name: install vim packages
+- name: install packages
   package:
-    name: "{{ vim_packages }}"
+    name: "{{ item }}"
     state: "{{ vim_packages_state }}"
   become: yes
+  with_items: "{{ vim_packages }}"
   tags:
     - vim
 
-# Set up configuration file
-- name: create vim plugin directory
+- name: install dnf repository
+  command: "dnf config-manager --add-repo {{ repo }}"
+  args:
+    creates: "/etc/yum.repos.d/{{ repo | basename }}"
+    warn: no
+  vars:
+    repo: "{{ vim_dnf_repo }}"
+  when: ansible_os_family == 'RedHat'
+
+- name: install dnf packages
+  dnf:
+    name: "{{ item }}"
+    state: "{{ i3_packages_state }}"
+  become: yes
+  with_items: "{{ vim_dnf_packages }}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+    - vim
+
+- name: create plugin directory
   file:
-    path: "~/{{ vim_plugins_path }}"
+    path: "{{ vim_plugins_path }}"
     state: directory
     recurse: yes
   become: yes
   tags:
     - vim
-    - vimrc
 
-- name: configure vim
+- name: build configuration
   template:
     src: "{{ vim_conf_template }}"
-    dest: "~/{{ vim_conf_path }}"
+    dest: "{{ vim_conf_path }}"
   become: yes
   tags:
     - vim
-    - vim_conf
 
-- name: install vim neobundle
+- name: install neobundle
   git:
     repo: "{{ vim_pluginmanager_repo }}"
-    dest: "~/{{ vim_plugins_path }}/neobundle.vim"
+    dest: "{{ vim_plugins_path }}/neobundle.vim"
     version: "{{ vim_neobundle_version }}"
   become: yes
   tags:
     - vim
-    - vimrc

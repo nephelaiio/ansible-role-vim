@@ -6,22 +6,20 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.1
   platforms:
-  - name: EL
-    versions:
-    - 6
-    - 7
-  - name: Archlinux
-    versions:
-      - all
-  - name: Ubuntu
-    versions:
-    - xenial
-  - name: Debian
-    versions:
-    - jessie
+    - name: EL
+      versions:
+        - 7
+    - name: Archlinux
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
   galaxy_tags:
     - vim
 
 dependencies:
-  - { role: geerlingguy.repo-epel, when: "ansible_os_family == 'RedHat'" }
-  - { role: nephelaiio.git }
+  - role: nephelaiio.git
