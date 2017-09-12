@@ -28,7 +28,7 @@ Role is tested against the following distributions (docker images):
   * Debian Stretch
   * Arch Linux
 
-You can test the role from sources using the command line by calling molecule directly ` molecule test `
+You can test the role directly from sources using command ` molecule test `
 
 ## License
 
