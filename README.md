@@ -24,7 +24,6 @@ Including an example of how to use your role (for instance, with variables passe
 
 Role is tested against the following distributions (docker images):
   * Ubuntu Xenial
-  * CentOS 7
   * Debian Stretch
   * Arch Linux
 

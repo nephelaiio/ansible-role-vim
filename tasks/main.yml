@@ -8,27 +8,6 @@
         - "vars/{{ ansible_os_family }}.yml"
       skip: true
 
-- name: install dnf
-  yum:
-    name: "{{ item }}"
-    state: "{{ vim_packages_state }}"
-    update_cache: yes
-  become: yes
-  with_items:
-    - epel-release
-    - dnf
-    - dnf-plugins-core
-  when: ansible_os_family == 'RedHat'
-
-- name: install dnf repository
-  command: "dnf config-manager --add-repo {{ repo }}"
-  args:
-    creates: "/etc/yum.repos.d/{{ repo | basename }}"
-    warn: no
-  vars:
-    repo: "{{ vim_dnf_repo }}"
-  when: ansible_os_family == 'RedHat'
-
 - name: install packages
   package:
     name: "{{ item }}"
