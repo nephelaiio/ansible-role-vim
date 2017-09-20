@@ -2,24 +2,23 @@
 - name: include variable overrides
   include_vars: "{{ item }}"
   with_first_found:
-    - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "vars/{{ ansible_distrubition }}.yml"
-    - "vars/{{ ansible_os_family }}.yml"
-  tags:
-    - vim
+    - files:
+        - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "vars/{{ ansible_distrubition }}.yml"
+        - "vars/{{ ansible_os_family }}.yml"
+      skip: true
 
 - name: install dnf
-  package:
+  yum:
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
+    update_cache: yes
   become: yes
   with_items:
     - epel-release
     - dnf
     - dnf-plugins-core
   when: ansible_os_family == 'RedHat'
-  tags:
-    - vim
 
 - name: install dnf repository
   command: "dnf config-manager --add-repo {{ repo }}"
@@ -36,8 +35,6 @@
     state: "{{ vim_packages_state }}"
   become: yes
   with_items: "{{ vim_packages }}"
-  tags:
-    - vim
 
 - name: create plugin directory
   file:
@@ -45,16 +42,12 @@
     state: directory
     recurse: yes
   become: yes
-  tags:
-    - vim
 
 - name: build configuration
   template:
     src: "{{ vim_conf_template }}"
     dest: "{{ vim_conf_path }}"
   become: yes
-  tags:
-    - vim
 
 - name: install neobundle
   git:
@@ -62,5 +55,3 @@
     dest: "{{ vim_plugins_path }}/neobundle.vim"
     version: "{{ vim_neobundle_version }}"
   become: yes
-  tags:
-    - vim
