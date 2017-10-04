@@ -12,7 +12,6 @@
   package:
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
-  become: yes
   with_items: "{{ vim_packages }}"
 
 - name: create plugin directory
@@ -20,17 +19,14 @@
     path: "{{ vim_plugins_path }}"
     state: directory
     recurse: yes
-  become: yes
 
 - name: build configuration
   template:
     src: "{{ vim_conf_template }}"
     dest: "{{ vim_conf_path }}"
-  become: yes
 
 - name: install neobundle
   git:
     repo: "{{ vim_pluginmanager_repo }}"
     dest: "{{ vim_plugins_path }}/neobundle.vim"
     version: "{{ vim_neobundle_version }}"
-  become: yes
