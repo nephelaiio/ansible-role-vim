@@ -7,7 +7,7 @@ if has('vim_starting')
 endif
 
 filetype off
-call neobundle#begin(expand('~/{{ vim_plugins_path }}'))
+call neobundle#begin(expand('{{ vim_plugins_path }}'))
 
 " my bundles
 NeoBundle 'kien/ctrlp.vim'
