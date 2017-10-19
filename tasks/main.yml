@@ -13,6 +13,7 @@
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
   with_items: "{{ vim_packages }}"
+  become: yes
 
 - name: create plugin directory
   file:
