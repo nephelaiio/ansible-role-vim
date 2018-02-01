@@ -1,5 +1,5 @@
 ---
-#vim_packages: []
+# vim_packages: []
 vim_packages_state: present
 vim_conf_template: vimrc
 vim_conf_path: ~/.vim/vimrc
