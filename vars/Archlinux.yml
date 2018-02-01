@@ -1,2 +1,4 @@
 ---
-# Variable overrides and definitions for Arch and derivatives
+vim_packages_defaults:
+  - vim
+  - the_silver_searcher

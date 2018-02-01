@@ -1,6 +1,4 @@
 ---
-# Variable definitions and overrides for Debian
-
-vim_packages:
+vim_packages_defaults:
   - vim
   - silversearcher-ag

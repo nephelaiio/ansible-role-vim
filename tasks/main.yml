@@ -12,7 +12,7 @@
   package:
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
-  with_items: "{{ vim_packages }}"
+  with_items: "{{ vim_packages | default(vim_packages_defaults) }}"
   become: yes
 
 - name: create plugin directory
