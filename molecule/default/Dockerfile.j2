@@ -5,7 +5,7 @@ RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && a
     elif [ $(command -v zypper) ]; then zypper refresh && zypper update -y && zypper install -y python sudo bash python-xml && zypper clean -a; \
     elif [ $(command -v apk) ]; then apk update && apk add --no-cache python sudo bash ca-certificates; \
     elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes install python python-devel python2-dnf bash && dnf clean all; \
-    elif [ $(command -v pacman) ]; then pacman -Syy && pacman -Sy --noconfirm python python2 sudo sed gzip && sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen; fi
+    elif [ $(command -v pacman) ]; then pacman -Syy && pacman -Sy --noconfirm python python2 sudo sed gzip glibc && sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen; fi
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
