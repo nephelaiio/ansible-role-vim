@@ -35,12 +35,18 @@
       command: "{{ tempdir.path }}/{{ vim_spacevim_installer | urlsplit('path') | basename }}"
       changed_when: false
 
+    - name: create spacevim config dir
+      file:
+        state: directory
+        path: "~{{ ansible_user_id }}/.SpaceVim.d"
+
     - name: configure spacevim
       template:
         src: spacevim.toml
-        path: "~{{ ansible_user_id }}/.SpaceVim.d/init.toml"
-        force: "{{ spacevim_config_force | bool}}"
+        dest: "~{{ ansible_user_id }}/.SpaceVim.d/init.toml"
+        force: "{{ vim_spacevim_config_force | bool }}"
 
+  when: vim_spacevim_install | bool
   always:
 
     - name: remove tempdir
