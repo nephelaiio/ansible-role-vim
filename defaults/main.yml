@@ -6,3 +6,4 @@ vim_conf_path: ~/.vim/vimrc
 vim_plugins_path: ~/.vim/bundle
 vim_spacevim_install: yes
 vim_spacevim_installer: https://spacevim.org/install.sh
+vim_spacevim_config_force: no
