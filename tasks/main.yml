@@ -15,19 +15,9 @@
   with_items: "{{ vim_packages | default(vim_packages_defaults) }}"
   become: yes
 
-- name: create plugin directory
-  file:
-    path: "{{ vim_plugins_path }}"
-    state: directory
-    recurse: yes
-
-- name: build configuration
-  template:
-    src: "{{ vim_conf_template }}"
-    dest: "{{ vim_conf_path }}"
-
-- name: install neobundle
-  git:
-    repo: "{{ vim_pluginmanager_repo }}"
-    dest: "{{ vim_plugins_path }}/neobundle.vim"
-    version: "{{ vim_neobundle_version }}"
+- name: install spacevim
+  shell: "curl {{ vim_spacevim_installer }} | bash"
+  when: vim_spacevim_install | bool
+  changed_when: false
+  tags:
+    - skip_ansible_lint

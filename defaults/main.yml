@@ -4,5 +4,5 @@ vim_packages_state: present
 vim_conf_template: vimrc
 vim_conf_path: ~/.vim/vimrc
 vim_plugins_path: ~/.vim/bundle
-vim_pluginmanager_repo: https://github.com/Shougo/neobundle.vim
-vim_neobundle_version: ver.4.0
+vim_spacevim_install: yes
+vim_spacevim_installer: https://spacevim.org/install.sh

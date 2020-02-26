@@ -2,3 +2,4 @@
 vim_packages_defaults:
   - vim
   - silversearcher-ag
+  - curl
