@@ -15,7 +15,5 @@ platforms:
     image: archlinux/base:latest
 provisioner:
   name: ansible
-scenario:
-  name: default
 verifier:
   name: testinfra
