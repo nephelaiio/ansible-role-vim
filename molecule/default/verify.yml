@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+  - name: run vim
+    command: 'vim +PluginInstall +PluginUpdate +PluginClean +qall'
+    register: vim_command
+
+  - assert:
+      that: vim_command.rc == 0
