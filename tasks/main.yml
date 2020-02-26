@@ -15,9 +15,30 @@
   with_items: "{{ vim_packages | default(vim_packages_defaults) }}"
   become: yes
 
-- name: install spacevim
-  shell: "curl {{ vim_spacevim_installer }} | bash"
-  when: vim_spacevim_install | bool
-  changed_when: false
-  tags:
-    - skip_ansible_lint
+- block:
+
+    - name: create tempdir
+      tempfile:
+        state: directory
+        prefix: vim
+      register: tempdir
+      changed_when: false
+
+    - name: retrieve spacevim installer
+      get_url:
+        url: "{{ vim_spacevim_installer }}"
+        dest: "{{ tempdir.path }}/{{ vim_spacevim_installer | urlsplit('path') | basename }}"
+        mode: 0700
+      changed_when: false
+
+    - name: execute spacevim installer
+      command: "{{ tempdir.path }}/{{ vim_spacevim_installer | urlsplit('path') | basename }}"
+      changed_when: false
+
+  always:
+
+    - name: remove tempdir
+      file:
+        state: absent
+        path: "{{ tempdir.path }}"
+      changed_when: false
