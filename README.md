@@ -5,6 +5,14 @@
 
 An [ansible role](https://galaxy.ansible.com/nephelaiio/vim) to install and configure vim
 
+## Local install
+
+Execute the following from the command line shell
+
+```
+curl -s https://raw.githubusercontent.com/nephelaiio/ansible-role-i3/master/install.sh | bash
+```
+
 ## Role Variables
 
 Please refer to the [defaults file](/defaults/main.yml) for an up to date list of input parameters.
