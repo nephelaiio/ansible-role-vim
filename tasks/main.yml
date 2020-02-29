@@ -13,7 +13,8 @@
     name: "{{ item }}"
     state: "{{ vim_packages_state }}"
   with_items: "{{ vim_packages | default(vim_packages_defaults) }}"
-  become: yes
+  tags:
+    - install
 
 - block:
 
@@ -22,6 +23,8 @@
         state: directory
         prefix: vim
       register: tempdir
+      tags:
+        - configure
       changed_when: false
 
     - name: retrieve spacevim installer
@@ -29,22 +32,30 @@
         url: "{{ vim_spacevim_installer }}"
         dest: "{{ tempdir.path }}/{{ vim_spacevim_installer | urlsplit('path') | basename }}"
         mode: 0700
+      tags:
+        - configure
       changed_when: false
 
     - name: execute spacevim installer
       command: "{{ tempdir.path }}/{{ vim_spacevim_installer | urlsplit('path') | basename }}"
+      tags:
+        - configure
       changed_when: false
 
     - name: create spacevim config dir
       file:
         state: directory
         path: "~{{ ansible_user_id }}/.SpaceVim.d"
+      tags:
+        - configure
 
     - name: configure spacevim
       template:
         src: spacevim.toml
         dest: "~{{ ansible_user_id }}/.SpaceVim.d/init.toml"
         force: "{{ vim_spacevim_config_force | bool }}"
+      tags:
+        - configure
 
   when: vim_spacevim_install | bool
   always:
@@ -53,4 +64,6 @@
       file:
         state: absent
         path: "{{ tempdir.path }}"
+      tags:
+        - configure
       changed_when: false
