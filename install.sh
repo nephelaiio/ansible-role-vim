@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git_clone_url=https://github.com/nephelaiio/ansible-role-i3.git
+git_clone_url=https://github.com/nephelaiio/ansible-role-vim.git
 OK=0
 KO=1
 
