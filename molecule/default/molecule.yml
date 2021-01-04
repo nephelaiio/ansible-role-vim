@@ -3,21 +3,20 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-  yamllint .
-  ansible-lint .
 platforms:
-  - name: buster
-    image: debian:buster
-  - name: bionic
-    image: ubuntu:bionic
-  - name: arch
-    image: archlinux/base:latest
+  - name: instance
+    image: "${MOLECULE_DOCKER_IMAGE}"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
-  inventory:
-    group_vars:
-      all:
-        ansible_python_interpreter: '/usr/bin/python3'
+  log: true
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+scenario:
+  name: default
 verifier:
-  name: ansible
+  name: testinfra

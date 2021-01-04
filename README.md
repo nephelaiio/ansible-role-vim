@@ -1,7 +1,7 @@
 # nephelaiio.vim
 
-[![Build Status](https://travis-ci.org/nephelaiio/ansible-role-vim.svg?branch=master)](https://travis-ci.org/nephelaiio/ansible-role-vim)
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-systemd--service-blue.svg)](https://galaxy.ansible.com/nephelaiio/vim/)
+[![Build Status](https://github.com/nephelaiio/ansible-role-vim/workflows/CI/badge.svg)](https://github.com/nephelaiio/ansible-role-vim/actions)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-nephelaiio.vim-blue.svg)](https://galaxy.ansible.com/nephelaiio/vim/)
 
 An [ansible role](https://galaxy.ansible.com/nephelaiio/vim) to install and configure vim
 
@@ -34,10 +34,9 @@ Please make sure your environment has [docker](https://www.docker.com) installed
 
 This role is tested against the following distributions (docker images):
 
+  * Ubuntu Focal
   * Ubuntu Bionic
-  * Ubuntu Xenial
-  * Debian Stretch
-  * Arch Linux
+  * Debian Buster
 
 You can test the role directly from sources using command ` molecule test `
 

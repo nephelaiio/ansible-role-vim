@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: vim
   author: Ted Cook
   description: An Ansible role to install and configure vim
   license: MIT
@@ -19,4 +20,3 @@ galaxy_info:
 
 dependencies:
   - role: nephelaiio.git
-    version: 2.1.0
