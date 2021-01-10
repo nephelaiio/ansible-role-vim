@@ -1,5 +1,13 @@
 ---
-# vim_packages: []
+# vim_packages: define to override vim_packages_default
+vim_packages_default:
+  archlinux:
+    - vim
+    - the_silver_searcher
+  default:
+    - vim
+    - silversearcher-ag
+    - curl
 vim_packages_state: present
 vim_conf_template: vimrc
 vim_conf_path: ~/.vim/vimrc

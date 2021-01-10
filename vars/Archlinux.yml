@@ -1,4 +1,0 @@
----
-vim_packages_defaults:
-  - vim
-  - the_silver_searcher

@@ -17,4 +17,5 @@ galaxy_info:
     - vim
 
 dependencies:
+  - role: nephelaiio.plugins
   - role: nephelaiio.git
